@@ -2,21 +2,25 @@ require 'launchy'
 require 'date'
 # require 'yaml'
 require 'erb'
+require_relative 'report1'
+require_relative 'report2'
 
 class Parse
   # @@config = YAML.load_file('config.yaml')
   OUTPUT_HTML = 'tmp/report.html'.freeze
+  OUTPUT_GRAPH = 'tmp/graphviz.txt'.freeze
 
   def start
     @id = 293447
     load_lookup
     load_blocks
 
-    print @blocks[0]
-
-    html = Report.new(@blocks).render_html
+    html = Report1.new(@blocks).render
     File.write(OUTPUT_HTML, html)
-    show_html
+    # show_html
+
+    graph = Report2.new(@blocks).render
+    File.write(OUTPUT_GRAPH, graph)
   end
 
   def load_lookup
@@ -86,38 +90,4 @@ class Entry
   attr_accessor :receiver_item
   attr_accessor :sender
   attr_accessor :sender_item
-end
-
-class Report
-  def initialize(blocks)
-    @blocks = blocks
-    @creation_date = Time.now
-  end
-
-  def render_html
-    ERB.new(HTML_TEMPLATE).result(binding)
-  end
-
-  HTML_TEMPLATE = %(
-    <html>
-    <head>
-      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    </head>
-    <body style="font-family:Trebuchet MS;">
-    <% for @items,@index in @blocks.each_with_index %>
-    <h3>Loop #<%=@index+1%></h3>
-    <p>
-      <span><%= @items[-1].receiver %><span>
-      <% for @x in @items %>
-      <span>
-        <b><%= @x.sender_item %></b>
-        &gt;
-        <%= @x.receiver %>
-      <span>
-      <% end %>
-    <p>
-    <% end %>
-    </body></html>).freeze
-
-    # <div>Created: <%= @creation_date %>.</div>
 end
