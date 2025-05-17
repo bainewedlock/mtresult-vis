@@ -1,0 +1,22 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    addressable (2.8.7)
+      public_suffix (>= 2.0.2, < 7.0)
+    childprocess (5.1.0)
+      logger (~> 1.5)
+    launchy (3.1.1)
+      addressable (~> 2.8)
+      childprocess (~> 5.0)
+      logger (~> 1.6)
+    logger (1.7.0)
+    public_suffix (6.0.2)
+
+PLATFORMS
+  x64-mingw-ucrt
+
+DEPENDENCIES
+  launchy
+
+BUNDLED WITH
+   2.6.7

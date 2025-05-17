@@ -6,15 +6,9 @@ This will generate a simple html file showing the trade loops, including game na
 
 Example output here: https://gistpreview.github.io/?22bdb63b2cf23af1965b24065a641153/report.html
 
-1) You need to download these two files manually and put them in ./tmp:
-```
-(id)-officialwants.txt
-(id)-results-official.txt
-```
+1) Update trade id in lib/parse.rb 
 
-2) Put the correct id in lib/parse.rb (line 11)
-
-3) run with
+2) run with
 ```
 ruby parse.rb
 ```

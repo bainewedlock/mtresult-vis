@@ -1,15 +1,16 @@
 # require 'yaml'
 require 'open-uri'
 require 'uri'
+require 'net/http'
 
 class Download
   # @@config = YAML.load_file('config.yaml')
-  @@base_url = "https://bgg.activityclub.org/olwlg/" 
+  @@base_url = "http://bgg.activityclub.org/olwlg/" 
 
   def start
     reset_output
 
-    trade_id = 293447
+    trade_id = 356412
     download "#{trade_id}-results-official.txt"
     download "#{trade_id}-officialwants.txt"
   end
